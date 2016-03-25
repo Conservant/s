@@ -1,13 +1,16 @@
 package ru.mitenev;
 
-import org.joda.time.LocalTime;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-//@Controller
+@Controller
+@RequestMapping("/")
 public class HelloWorldController {
-    public static void main(String[] args) {
-        LocalTime current = new LocalTime();
-        System.out.println("The current time is: " + current);
-        Greeter greeter = new Greeter();
-        System.out.println(greeter.sayHello());
+    @RequestMapping(method = RequestMethod.GET)
+    public String printWelcome(ModelMap model) {
+        model.addAttribute("message", "Hello world!");
+        return "hello";
     }
 }
