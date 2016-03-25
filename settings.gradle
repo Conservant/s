@@ -1,0 +1,4 @@
+rootProject.name = 'SML2'
+
+include "module-one"
+include "module-two"
