@@ -1,4 +1,4 @@
 rootProject.name = 'SML2'
 
-include "module-one"
-include "module-two"
+systemProp.http.proxyHost="www.t-systems.ru"
+systemProp.http.proxyPort="3128"
