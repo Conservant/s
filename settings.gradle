@@ -1,4 +1,0 @@
-rootProject.name = 'SML2'
-
-systemProp.http.proxyHost="www.t-systems.ru"
-systemProp.http.proxyPort="3128"
