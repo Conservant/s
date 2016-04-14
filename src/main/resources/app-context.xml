@@ -14,8 +14,8 @@
 
 
     <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="sql/16.1/db_creation.sql"/>
-        <jdbc:script location="sql/16.1/test-data.sql"/>
+        <jdbc:script location="../../../sql/16.1/db_creation.sql"/>
+        <jdbc:script location="../../../sql/16.1/test-data.sql"/>
     </jdbc:embedded-database>
 
 
@@ -39,4 +39,9 @@
             </props>
         </property>
     </bean>
+    
+    <!--<bean id="userDao" class="ru.mitenev.dao.impl.UserDaoImpl">-->
+        <!--<property name=""-->
+        <!---->
+    <!--</bean>-->
 </beans>
