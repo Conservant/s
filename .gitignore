@@ -2,3 +2,7 @@
 .idea/
 gradle/
 .gradle/
+*.class
+*.MF
+*.jar
+*.war

@@ -1,0 +1,44 @@
+interfaces
+DOM
+dao-level
+service-level
+
+
+
+
+DOM
+    --users
+        id;
+        firstName;
+        lastName;
+        email;
+        phoneNumber;
+        birthDate;
+        registrationTime;
+
+    --type of knowledge
+        id
+        name
+    url
+    post in pikabu-style
+    file
+
+    --record
+        id
+        value
+        type of knowledge
+
+
+
+
+
+
+dao-level
+    iBatis
+    dao
+    jpa
+    entity-manager
+
+
+
+

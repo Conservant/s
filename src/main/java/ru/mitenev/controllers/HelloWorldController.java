@@ -1,4 +1,4 @@
-package ru.mitenev;
+package ru.mitenev.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
