@@ -1,8 +1,7 @@
 package ru.mitenev.domain;
 
 
-import ru.mitenev.domain.enums.KnowledgeType;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +17,8 @@ public class Knowledge {
 
 
     private Long id;
-    private String value;
-    private KnowledgeType knowledgeType;
+    private String description;
+//    private KnowledgeType knowledgeType;
     private String location;
     private User user;
 
@@ -37,23 +36,23 @@ public class Knowledge {
         this.id = id;
     }
 
-    @Column(name = "VALUE")
-    public String getValue() {
-        return value;
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return description;
     }
 
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public KnowledgeType getKnowledgeType() {
-        return knowledgeType;
-    }
-
-    public void setKnowledgeType(KnowledgeType knowledgeType) {
-        this.knowledgeType = knowledgeType;
-    }
+//    public KnowledgeType getKnowledgeType() {
+//        return knowledgeType;
+//    }
+//
+//    public void setKnowledgeType(KnowledgeType knowledgeType) {
+//        this.knowledgeType = knowledgeType;
+//    }
 
     @Column(name = "LOCATION")
     public String getLocation() {
@@ -64,7 +63,7 @@ public class Knowledge {
         this.location = location;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;
