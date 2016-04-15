@@ -1,5 +1,7 @@
 package ru.mitenev.dao.impl;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +14,8 @@ import java.util.List;
 @Repository("userDao")
 @Transactional
 public class UserDaoImpl implements UserDao{
-//    private Log log =
+
+    private Log log = LogFactory.getLog(UserDaoImpl.class);
 
     private SessionFactory sessionFactory;
 
@@ -24,18 +27,25 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<User> getUsersWithKnowledges() {
+        return sessionFactory.getCurrentSession().getNamedQuery("User.findAllWithKnowledges").list();
+    }
+
+    @Override
     public User getById(Long id) {
-        return null;
+        return (User) sessionFactory.getCurrentSession().getNamedQuery("User.findById").setParameter("id", id).uniqueResult();
     }
 
     @Override
     public void saveUser(User user) {
-
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
 
     @Override
     public void delete(User user) {
-
+        sessionFactory.getCurrentSession().delete(user);
+        log.info("User with id " + user.getId() + " was deleted.");
     }
 
     public SessionFactory getSessionFactory() {
