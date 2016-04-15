@@ -1,9 +1,8 @@
 package ru.mitenev.domain;
 
-import org.joda.time.DateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +22,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private String phoneNumber;
-    private DateTime birthDate;
-    private DateTime registrationTime;
+    private Date birthDate;
+    private Date registrationDate;
     private Set<Knowledge> knowledgeSet = new HashSet<>();
 
     @Id
@@ -65,40 +64,31 @@ public class User {
         this.email = email;
     }
 
-    @Column(name = "PHONE_NUMBER")
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE")
-    public DateTime getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(DateTime birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "REGISTRATION_TIME")
-    public DateTime getRegistrationTime() {
-        return registrationTime;
+    @Column(name = "REGISTRATION_DATE")
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistrationTime(DateTime registrationTime) {
-        this.registrationTime = registrationTime;
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public void setKnowledgeSet(Set<Knowledge> knowledgeSet) {
         this.knowledgeSet = knowledgeSet;
     }
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<Knowledge> getKnowledgeSet() {
         return knowledgeSet;
     }
@@ -110,5 +100,10 @@ public class User {
 
     public void remove(Knowledge knowledge) {
         getKnowledgeSet().remove(knowledge);
+    }
+
+    @Override
+    public String toString() {
+        return "User-id:" + id + " name: " + firstName + " " + lastName + "; email: " + email;
     }
 }
