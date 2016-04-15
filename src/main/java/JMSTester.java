@@ -1,5 +1,3 @@
-package ru.mitenev;
-
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class JMSTester {
@@ -7,8 +5,6 @@ public class JMSTester {
 
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         ctx.load("jms-listener-app-context.xml");
-
-
         ctx.refresh();
 
         while (true) {
